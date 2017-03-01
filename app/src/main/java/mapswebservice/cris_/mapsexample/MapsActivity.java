@@ -75,10 +75,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onMarkerClick(Marker marker) {
                 //Toast.makeText(getApplicationContext(),"Toco marker",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MapsActivity.this,Pop.class));
+                //startActivity(new Intent(MapsActivity.this,Pop.class));
+                Place placeAux = searchPlace(marker.getPosition().longitude,marker.getPosition().latitude);
+                if (placeAux!=null){
+                    Intent popIntent = new Intent(MapsActivity.this,Pop.class);
+                    popIntent.putExtra("name",placeAux.getName());
+                    popIntent.putExtra("desc",placeAux.getDesc());
+                    startActivity(popIntent);
+                }
+
+
                 return false;
             }
         });
+    }
+
+    public Place searchPlace(double lon,double lat){
+
+        for (Place place:
+             places) {
+
+            if (lon == place.getLocation().longitude && lat == place.getLocation().latitude){
+                //Toast.makeText(getApplicationContext(),"entro if" ,Toast.LENGTH_SHORT).show();
+                return place;
+            }
+        }
+        return null;
     }
 }
 
