@@ -18,5 +18,16 @@
         android:text="Abrir Mapa"
         android:id="@+id/btn_openMap"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TestWebService"
+        android:id="@+id/btn_testWebService"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtTest"/>
+
 
 </LinearLayout>

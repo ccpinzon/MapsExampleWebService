@@ -12,12 +12,6 @@ public class Place {
     private String desc;
     private LatLng location;
 
-    public Place(int id, String name, String desc, LatLng location) {
-        this.id = id;
-        this.name = name;
-        this.desc = desc;
-        this.location = location;
-    }
 
     public int getId() {
         return id;
