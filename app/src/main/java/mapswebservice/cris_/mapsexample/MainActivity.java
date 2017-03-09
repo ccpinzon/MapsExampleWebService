@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (isOnline()){
                     //10.0.2.2
-                    pedirDatos("http://192.168.0.23/maps/consulta.php");
+                    pedirDatos("https://rdzmysite.000webhostapp.com/consulta.php");
                 }else {
                     Toast.makeText(getApplicationContext(),"SIN CONEXION",Toast.LENGTH_SHORT).show();
                 }

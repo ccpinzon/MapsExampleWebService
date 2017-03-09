@@ -47,7 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //LLENAR ARRAY
         if (isOnline()){
             //10.0.2.2
-            pedirDatos("http://192.168.0.23/maps/consulta.php");
+            pedirDatos("https://rdzmysite.000webhostapp.com/consulta.php");
         }else{
             Toast.makeText(getApplicationContext(),"SIN CONEXION",Toast.LENGTH_SHORT).show();
         }
@@ -74,21 +74,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
-//METODO QUE TRAER LOS LUGARES DE LA LISTA
+            //METODO QUE TRAER LOS LUGARES DE LA LISTA
         for (Place place:
              placeList) {
-            mMap.addMarker(new MarkerOptions().position(place.getLocation()).title(place.getName()));
+            mMap.addMarker(new MarkerOptions().position(place.getLocation()).title(place.getName()).snippet(place.getDesc()));
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(placeList.get(1).getLocation(),14));
 
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-             //   Toast.makeText(getApplicationContext(),"Toco marker",Toast.LENGTH_SHORT).show();
-               // startActivity(new Intent(MapsActivity.this,Pop.class));
 
-               //METODO QUE TRAE LA POS DE EL QUE CLIKCEO
-                   Place placeAux = searchPlace(marker.getPosition().longitude,marker.getPosition().latitude);
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                //METODO QUE TRAE LA POS DE EL QUE CLIKCEO
+                Place placeAux = searchPlace(marker.getPosition().longitude,marker.getPosition().latitude);
 
 
                 if (placeAux!=null){
@@ -98,10 +96,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     startActivity(popIntent);
                 }
 
-
-                return false;
             }
         });
+
+
     }
 
     public Place searchPlace(double lon,double lat){
